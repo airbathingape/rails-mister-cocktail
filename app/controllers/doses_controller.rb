@@ -1,11 +1,11 @@
 class DosesController < ApplicationController
-  before_action :set_cocktail, only: [:new, :create, :destroy]
-
   def new
     @dose = Dose.new
+    @cocktail = Cocktail.find(params[:cocktail_id])
   end
 
   def create
+    @cocktail = Cocktail.find(params[:cocktail_id])
     @dose = Dose.new(dose_params)
     @dose.cocktail = @cocktail
     if @dose.save
@@ -18,11 +18,7 @@ class DosesController < ApplicationController
   def destroy
     @dose = Dose.find(params[:id])
     @dose.destroy
-    respond_to do |format|
-      format.html { redirect_to cocktail_path(@cocktail), status: :see_other, notice: 'Dose deleted.' }
-      format.json { head :no_content }
-      format.turbo_stream {}
-    end
+    redirect_to cocktail_path(@dose.cocktail), status: :see_other
   end
 
   private
