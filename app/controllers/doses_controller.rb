@@ -18,11 +18,9 @@ class DosesController < ApplicationController
   def destroy
     @dose = Dose.find(params[:id])
     @dose.destroy
-    respond_to do |format|
-      format.html { redirect_to cocktail_path(@cocktail), notice: 'Dose deleted.' }
-      format.json { head :no_content }
-      format.turbo_stream {}
-    end
+
+      redirect_to cocktail_path(@cocktail), status: :see_other
+
   end
 
   private
@@ -31,6 +29,6 @@ class DosesController < ApplicationController
   end
 
   def dose_params
-    params.require(:dose).permit(:description, :ingredient_id, :cocktail_id)
+    params.require(:dose).permit(:description, :ingredient_id)
   end
 end
