@@ -21,6 +21,7 @@ class DosesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to cocktail_path(@cocktail), notice: 'Dose deleted.' }
       format.json { head :no_content }
+      format.turbo_stream {}
     end
   end
 
@@ -30,6 +31,6 @@ class DosesController < ApplicationController
   end
 
   def dose_params
-    params.require(:dose).permit(:description, :ingredient_id)
+    params.require(:dose).permit(:description, :ingredient_id, :cocktail_id)
   end
 end

@@ -12,7 +12,7 @@
             <% @cocktail.doses.each do |dose| %>
               <p><%= dose.description %></p>
               <p><em><%= dose.ingredient.name %></em></p>
-              <p><%= link_to 'Delete Dose', cocktail_dose_path(@cocktail), method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+              <p><%= link_to 'Delete Dose', cocktail_dose_path(@cocktail), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %> </p>
               <hr>
             <% end %>
             <%= link_to "Add a Dose", new_cocktail_dose_path(@cocktail), :class =>"cocktail-button btn" %>
