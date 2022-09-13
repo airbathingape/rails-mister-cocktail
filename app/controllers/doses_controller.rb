@@ -18,9 +18,11 @@ class DosesController < ApplicationController
   def destroy
     @dose = Dose.find(params[:id])
     @dose.destroy
-
-      redirect_to cocktail_path(@cocktail), status: :see_other
-
+    respond_to do |format|
+      format.html { redirect_to cocktail_path(@cocktail), status: :see_other, notice: 'Dose deleted.' }
+      format.json { head :no_content }
+      format.turbo_stream {}
+    end
   end
 
   private
