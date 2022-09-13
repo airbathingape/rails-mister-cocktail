@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<div class="banner-content">
+  <h1>Cocktails</h1>
+  <p>Mix Like the Pros</p>
+</div>
+</div>
+<h1 class="main-title">Cocktail List</h1>
+<div class="container">
+  <div class="row")>
+    <% @cocktails.each do |cocktail| %>
+      <div class="col-xs-12 col-sm-4">
+        <%= link_to cocktail_path(cocktail) do %>
+          <div class="card">
+            <h2 class="card-description"><%= cocktail.name %></h2>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

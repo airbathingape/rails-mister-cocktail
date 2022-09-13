@@ -1,0 +1,26 @@
+<% content_for(:title_tag) do %>
+  A <%= @cocktail.name %> is being served
+<% end %>
+<h1 class="main-title"><%= @cocktail.name %></h1>
+<div class="cocktail-card">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm 6 col-m-3">
+        <div class="cocktail-split">
+          <div>
+            <h3>Ingredients of a <%= @cocktail.name %>:</h3>
+            <% @cocktail.doses.each do |dose| %>
+              <p><%= dose.description %></p>
+              <p><em><%= dose.ingredient.name %></em></p>
+              <p><%= link_to 'Delete Dose', cocktail_dose_path(@cocktail), method: :delete, data: { confirm: 'Are you sure?' } %> </p>
+              <hr>
+            <% end %>
+            <%= link_to "Add a Dose", new_cocktail_dose_path(@cocktail), :class =>"cocktail-button btn" %>
+            <br>
+          </div>
+        </div>
+      </div>
+      <p><%= link_to 'Back', cocktails_path %></p>
+    </div>
+  </div>
+</div>
